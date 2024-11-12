@@ -1,0 +1,47 @@
+{% extends 'home/base/base.html' %}
+{% load static %}
+{% block title %}SignUp{% endblock title %}
+{% block css %}
+
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock css %}
+
+{% block favi %}
+<link type="image/png" sizes="120x120" rel="icon" href="{% static 'image/signup.ico' %}">
+{% endblock favi %}
+
+
+
+{% block content %}
+
+<div class="container">
+  <div class="box">
+    <div class="header">
+      <p>Register to DevBlog </p>
+    </div>
+    <form method="POST" novalidate>
+      {% csrf_token %}
+      <div class="input-box">
+        {% for row in form %}
+        {{ row }}
+        {% if row.errors %}
+        {% for error in row.errors %}
+        <p style="color:red;">{{error}}</p>
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
+      </div>
+      <div class="input-box">
+        <input type="submit" class="input-submit" value="SIGN UP">
+      </div>
+    </form>
+    
+  </div>
+  <div class="wrapper"></div>
+</div>
+
+
+{% endblock content %}
+
+{% block js %}
+{% endblock js %}

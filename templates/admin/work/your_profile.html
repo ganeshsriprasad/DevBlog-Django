@@ -1,0 +1,114 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+
+{% block title %}Your Profile{% endblock title %}
+
+{% block favi %}
+<link type="image/png" sizes="120x120" rel="icon" href="{% static 'image/profile.ico' %}">
+{% endblock favi %}
+
+
+
+
+{% block content %}
+
+<!-- Profile -->
+<div id="profile" class="section scrollspy">
+   <h4>Profile</h4>
+   <div class="container">
+      <div class="card bg-info text-red">
+         <div class="card-body">
+            <div class="row align-items-center">
+               <div class="col-md-4">
+                  <div class="circle-img">
+                     <img src="{{ profile.profile_picture }}" alt="Profile Picture" class="img-fluid">
+                  </div>
+               </div>
+               <div class="col-md-8">
+                  <h5 class="card-title">Profile</h5>
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <label for="profile-image">User</label>
+                           <input id="profile-image" type="text" class="form-control" value="{{ profile.first_name }} {{ profile.last_name }}" readonly>
+
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <p>{{ profile.bio_data }}</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         
+        
+      </div>
+   </div>
+   <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="container mt-4">
+         <div class="card">
+            <div class="card-body">
+               <h5 class="card-title">User Information</h5>
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="form-group">
+                        <label for="username">Username</label>
+                        <input readonly name="username" id="username" type="text" class="form-control" value="{{ profile.user.username }}">
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="firstname">First Name</label>
+                        <input name="first_name" id="firstname" type="text" class="form-control" value="{{ profile.user.first_name }}">
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="lastname">Last Name</label>
+                        <input name="last_name" id="lastname" type="text" class="form-control" value="{{ profile.user.last_name }}">
+                     </div>
+                  </div>
+                  <div class="col-md-12">
+                     <div class="form-group">
+                        <label for="email">Email</label>
+                        <input readonly id="email" type="email" class="form-control" value="{{ profile.user.email }}">
+                     </div>
+                  </div>
+                  <div class="col-md-12">
+                     <div class="form-group">
+                        <label for="bio">Bio</label>
+                        <textarea name="bio_data" id="bio" class="form-control">{{ profile.bio_data }}</textarea>
+                        <p>Change Profile Image(If You want )</p>
+                        <input class="form-control" type="file" name="profile_picture">
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="card-footer">
+               <button class="btn btn-primary" type="submit" name="action">Save Changes </button>
+            </div>
+         </div>
+      </div>
+   </form>
+</div>
+
+<style>
+    .circle-img {
+       width: 150px;
+       height: 150px;
+       overflow: hidden;
+       border-radius: 50%;
+    }
+</style>
+
+
+<hr>
+<div class="container text-white bg-dark p-4">
+   <h3>Wanna Change Your Password? </h3>
+   <a href="{% url  'dynamic_option' 'change_password' %}" class="btn btn-primary">Change Password Here</a>
+</div>
+
+
+{% endblock content %}

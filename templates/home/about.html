@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Developers
+{% endblock title %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/devcard.css' %}">
+<link rel="icon" type="image/x-icon" href="{% static 'image/contact.ico' %}">
+{% endblock css %}
+
+{% block favi %}
+<link type="image/png"  rel="icon" href=".../icons8-dashboard-120.png">
+{% endblock favi %}
+
+
+{% block content %}
+<section>
+    <div class="card1" style=" width: 400px; ">
+        <form action="" method="POST"  style="margin-right : 10px; padding-right:20px;">
+            {% csrf_token %}
+
+            <input type="text" name="name_is" id="" placeholder="Your Name" style="width: 100%; padding: 10px; margin-bottom: 10px; background-color: rgba(255, 255, 255, 0.5); backdrop-filter: blur(5px);" required>
+            <textarea name="saying" id="" cols="30" rows="10" style="width: 100%; padding: 10px; margin-bottom: 10px; background-color: rgba(255, 255, 255, 0.5); backdrop-filter: blur(5px);"></textarea>
+
+            <div class="bottom" style="text-align: center;">
+                <input type="submit" class="btn" value="Send" >
+            </div>
+        </form>
+    </div>
+</section>
+
+
+{% endblock %}

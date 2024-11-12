@@ -1,0 +1,180 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "css/dashboard.css" %}">
+    <link rel="stylesheet" href="{% static "css/popup.css" %}">
+    
+    {% block css %}{% endblock css %}
+    <title>{% block title %}{% endblock title %} | Dashboard</title>
+    
+</head>
+
+<body>
+
+    {% if messages %}
+    {% for message in messages %}  
+    <div id="popup-message" class="popup hidden">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+      <div class="popup-content">
+        {% comment %} <i class="icon">&#10004;</i> {% endcomment %}
+        <div class="text-content">
+          <strong>Note!</strong>
+          <p>Message</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <div class="container">
+
+        <aside>
+            <!-- <div class="toggle">
+                <div class="logo">
+                    <img src="{% static "image/blogverse.png" %}">
+                    <h2>Blog<span class="danger">Verse</span></h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">
+                        close
+                    </span>
+                </div>
+            </div> -->
+            <img src="{% static 'image/logo-light.svg' %}" alt="SimpleBlog logo" width="150" class="logo-light" style="margin-top: 1rem;">
+          <!-- <img src="{% static 'image/logo-dark.svg' %}" alt="SimpleBlog logo" width="150" class="logo-dark"> -->
+
+            <div class="sidebar">
+                <a href="{% url "dashboard" %}" class="{% if request.path == '/dashboard/' %}active{% endif %}">
+                    <span class="material-icons-sharp">
+                        dashboard
+                    </span>
+                    <h3>Dashboard</h3>
+                </a>
+                
+                <a href="{% url "option" 'create' %}" class="{% if request.path == '/dashboard/create/' %}active{% endif %}">
+                    <span class="material-icons-sharp">
+                        report_gmailerrorred
+                    </span>
+                    <h3>Create Posts</h3>
+                </a>
+                <a href="{% url "option" 'read' %}" class="{% if request.path == '/dashboard/read/' %}active{% endif %}">
+                    <span class="material-icons-sharp">
+                        receipt_long
+                    </span>
+                    <h3>Your Posts</h3>
+                </a>
+                
+                <a href="#">
+                    <span class="material-icons-sharp">
+                        mail_outline
+                    </span>
+                    <h3> Mailbox</h3>
+                    <span class="message-count">27</span>
+                </a>
+                
+                <a href="#">
+                    <span class="material-icons-sharp">
+                        insights
+                    </span>
+                    <h3>Posts Charts</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">
+                        settings
+                    </span>
+                    <h3>Settings</h3>
+                </a>
+               
+                <a href="{% url "logout" %}">
+                    <span class="material-icons-sharp">
+                        logout
+                    </span>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+
+        </aside>
+
+        <main>
+            <h1>Dashboard</h1>
+        
+            {% block content %}{% endblock content %}
+        </main>
+        
+        <div class="right-section">
+            <div class="nav">
+                
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">
+                        menu
+                    </span>
+                </button>
+                
+        
+                <div class="profile">
+                    
+                    <div class="info">
+                        <p>Hey, <b>{{user}}</b></p>
+                        <small class="text-muted">User</small>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="{{user.profile.profile_picture.url}}">
+                    </div>
+                    
+                    
+                </div>
+                
+        
+            </div>
+            <!-- End of Nav -->
+        
+            <div class="user-profile" style="display:grid ;">
+                <img src="{% static 'image/logo-light.svg' %}" alt="SimpleBlog logo" width="150" class="logo-light" style="border-radius: 0%;">
+                <div class="logo">
+                    <!-- <img src="{% static "image/blogverse.png" %}"> -->
+                     
+                    <!-- <h2>BlogVerse</h2> -->
+                    <p>Sneak to the reality</p>
+                </div>
+            </div>
+        
+            <div class="reminders">
+                <div class="header">
+                    <h2>Time</h2>
+                    <span class="material-icons-sharp">
+                        clock
+                    </span>
+                </div>
+        
+                <div class="notification">
+                    <div class="icon">
+                        <span class="material-icons-sharp">
+                            volume_up
+                        </span>
+                    </div>
+                    <div class="content">
+                        <div class="info">
+                            <h2>11:05:20</h2>                    
+                        </div>
+                    </div>
+                </div>
+        
+        
+            </div>
+        
+        </div>
+    </div>
+
+    <script src="{% static "js/index.js" %}"></script>
+    {% include "auth/popup.html" %}
+
+
+
+</body>
+
+</html>

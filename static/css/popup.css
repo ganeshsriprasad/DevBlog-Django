@@ -1,0 +1,108 @@
+
+.popup {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #fff;
+    color: #333;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    width: 300px;
+}
+
+.popup.show {
+    opacity: 1;
+}
+
+.hidden {
+    display: none;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: #555;
+}
+
+.popup-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon {
+    font-size: 24px;
+}
+
+.text-content strong {
+    font-size: 16px;
+    display: block;
+}
+
+.text-content p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Specific styles for each message type */
+.popup.success {
+    border: 1px solid #4CAF50;
+}
+
+.popup.success .icon {
+    color: #4CAF50;
+}
+
+.popup.success .text-content strong {
+    color: #4CAF50;
+}
+
+.popup.warning {
+    border: 1px solid #FFC107;
+}
+
+.popup.warning .icon {
+    color: #FFC107;
+}
+
+.popup.warning .text-content strong {
+    color: #FFC107;
+}
+
+.popup.info {
+    border: 1px solid #2196F3;
+}
+
+.popup.info .icon {
+    color: #2196F3;
+}
+
+.popup.info .text-content strong {
+    color: #2196F3;
+}
+
+.popup.error {
+    border: 1px solid #F44336;
+}
+
+.popup.error .icon {
+    color: #F44336;
+}
+
+.popup.error .text-content strong {
+    color: #F44336;
+}

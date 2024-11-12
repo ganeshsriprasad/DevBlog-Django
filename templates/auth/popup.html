@@ -1,0 +1,58 @@
+<script>
+    function showPopup(type, message) {
+        const popup = document.getElementById('popup-message');
+       // const icon = popup.querySelector('.icon');
+        const strong = popup.querySelector('.text-content strong');
+        const text = popup.querySelector('.text-content p');
+        
+        // Remove previous type classes
+        popup.classList.remove('success', 'warning', 'info', 'error');
+        
+        // Set the type-specific styles and content
+        switch (type) {
+            case 'success':
+                popup.classList.add('success');
+                //icon.innerHTML = '&#10004;'; // Checkmark icon
+                strong.innerHTML = 'Success';
+                break;
+            case 'warning':
+                popup.classList.add('warning');
+                //icon.innerHTML = '&#9888;'; // Warning icon
+                strong.innerHTML = 'Warning';
+                break;
+            case 'info':
+                popup.classList.add('info');
+                //icon.innerHTML = '&#8505;'; // Info icon
+                strong.innerHTML = 'Info';
+                break;
+            case 'error':
+                popup.classList.add('error');
+                // icon.innerHTML = '&#10060;';
+                strong.innerHTML = 'Error';
+                break;
+        }
+        
+        text.innerHTML = message;
+        
+        // Show the popup
+        popup.classList.remove('hidden');
+        popup.classList.add('show');
+        
+        // Hide the popup after 3 seconds
+        setTimeout(() => {
+            closePopup();
+        }, 3000);
+    }
+    
+    function closePopup() {
+        const popup = document.getElementById('popup-message');
+        popup.classList.remove('show');
+        popup.classList.add('hidden');
+    }
+    
+    {% for message in messages %}
+    showPopup('{{message.tags}}', '{{message}}');
+    {% endfor %}
+    
+
+</script>

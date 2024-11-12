@@ -1,0 +1,144 @@
+{% extends "home/base/base.html" %}
+{% block title %}Contents{% endblock title %}
+{% block content %}
+<div class="blog_container">
+   
+    <div class="blog_content">
+        <div class="left_content">
+            {% if page_obj %}
+            {% for data in page_obj %}
+            <!--CARD BEGINING-->
+            <div class="blog_card">
+                <a href="{% url 'artical' data.slug %}" class="figure">
+                <img src="{{data.picture.url}}" alt="" loading="lazy">
+                <span class="tag">{{data.uploaded_at}}</span>
+                </a>
+                <section>
+                <a href="#" class="title">{{data.title}}</a>
+                <p>{{ data.descript|truncatewords:20|safe }}</p>
+                <p>
+                    <i class="fa fa-eye"> {{data.views}}</i> views 
+                    <span><i class="fa fa-user"> {{user}}</i> </span>
+                    <span><i class="fa fa-comment"> {{data.total_comments}}</i></span>
+                
+                </p>
+                </section>
+            </div>
+            <!--CARD ENDS-->
+            {% endfor %}
+            {% else %}
+            <h3>Noting  ...</h3>
+            {% endif %}
+    
+        </div>
+
+        <!-- pagination here -->
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+              <a class="page-link" href="?page=1">&laquo; first</a>
+              <a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% else %}
+              <a class="page-link disabled" href="#">&laquo; first</a>
+              <a class="page-link disabled" href="#">previous</a>
+            {% endif %}
+          
+            {% for num in page_obj.paginator.page_range %}
+              {% if page_obj.number == num %}
+                <a class="page-link active" href="#">{{ num }}</a>
+              {% else %}
+                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+              {% endif %}
+            {% endfor %}
+          
+            {% if page_obj.has_next %}
+              <a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a>
+              <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% else %}
+              <a class="page-link disabled" href="#">last &raquo;</a>
+              <a class="page-link disabled" href="#"><i class="fa fa-chevron-right"></i></a>
+            {% endif %}
+          </div>
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+      }
+      
+      .pagination a {
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        text-decoration: none;
+        color: #333;
+        margin: 5px;
+        transition: all 0.3s ease-in-out;
+      }
+      
+      .pagination a:hover {
+        background-color: #eee;
+      }
+      
+      .pagination a.active {
+        background-color: #333;
+        color: #fff;
+        border-color: #333;
+      }
+      
+      .pagination a[href="#"] {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+      
+</style>          
+    </div>
+
+    <div class="blog_content right_content">
+        <!--SEARCH COLUMN BEGINING-->
+        <div class="columns search_column">
+        <section class="search">
+            <form>
+            <fieldset><input type="text" name="searchpost" placeholder="Search..." maxlength="100" required=""></fieldset>
+            <fieldset><button type="submit" class="btn1"><i class="fa fa-search"></i></button></fieldset>
+            </form>
+        </section>
+        </div>
+        <!--SEARCH COLUMN ENDS-->
+
+        <!--CATEGORIES COLUMN BEGINING-->
+        <div class="columns categories">
+        <span class="title">Categories</span>
+        <section>
+            {% for item in categories %}
+                <a href="/posts/?category="{{item}}> {{item}} </a>
+                {% endfor %}
+        </section>
+        </div>
+        <!--CATEGORIES COLUMN ENDS-->
+        <!--POSTS COLUMN BEGINING-->
+        <div class="columns posts">
+        <span class="title">Top Posts <a href="#" title="Explore More"><i class="fa fa-share"></i></a></span>
+        <section>
+            {% for data in 5_recent %}
+            <a href="#">
+                <img src="{{data.picture.url}}" alt="" loading="lazy"> 
+                <p>{{data.title}}</p>
+            </a>
+            {% endfor %}
+        </section>
+        </div>
+        <!--POSTS COLUMN ENDS-->
+        
+        <!--SOCIAL MEDIA ICONS BEGINING-->
+        <div class="columns social_icons">
+        <a href="#" title="Facebook"><i class="fa fa-facebook"></i></a>
+        <a href="#" title="Instagram"><i class="fa fa-instagram"></i></a>
+        <a href="#" title="Youtube"><i class="fa fa-youtube"></i></a>
+        <a href="#" title="Whatsapp"><i class="fa fa-whatsapp"></i></a>
+        <a href="#" title="Telegram"><i class="fa fa-telegram"></i></a>
+        </div>
+        <!--SOCIAL MEDIA ICONS ENDS-->
+    </div>
+</div>
+
+{% endblock content %}

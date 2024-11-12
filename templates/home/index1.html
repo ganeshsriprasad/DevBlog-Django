@@ -1,0 +1,113 @@
+{% extends "home/base/base.html" %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block css %}{% endblock css %}
+
+{% block content %}
+
+<div class="blog_container">
+<div class="blog_content">
+    <div class="left_content">
+        {% if top_posts %}
+        {% for data in top_posts %}
+        <!--CARD BEGINING-->
+        <div class="blog_card">
+            <a href="{% url 'artical' data.slug %}" class="figure">
+            <img src="{{data.picture.url}}" alt="" loading="lazy">
+            <span class="tag">{{data.uploaded_at}}</span>
+            </a>
+            <section>
+            <a href="{% url 'artical' data.slug %}" class="title">{{data.title}}</a>
+            <p>{{ data.descript|truncatewords:20|safe }}</p>
+            <p>
+                <i class="fa fa-eye"> {{data.views}}</i> views 
+                <span><i class="fa fa-user"> {{user}}</i> </span>
+                <span><i class="fa fa-comment"> {{data.total_comments}}</i></span>
+            
+            </p>
+            </section>
+        </div>
+        <!--CARD ENDS-->
+        {% endfor %}
+        {% else %}
+        <h3>Noting  ...</h3>
+        {% endif %}
+
+    </div>
+    <a href="{% url 'all_posts' %}" class="btn1 load-btn">All posts</a>
+</div>
+
+
+
+
+<div class="blog_content right_content">
+    <!--SEARCH COLUMN BEGINING-->
+    <div class="columns search_column">
+    <section class="search">
+        <form>
+        <fieldset><input type="text" name="searchpost" placeholder="Search..." maxlength="100" required=""></fieldset>
+        <fieldset><button type="submit" class="btn1"><i class="fa fa-search"></i></button></fieldset>
+        </form>
+    </section>
+    </div>
+    <!--SEARCH COLUMN ENDS-->
+    <!--BOOKS COLUMN BEGINING-->
+    <div class="columns books">
+    <span class="title">New Books <a href="#" title="Explore More"><i class="fa fa-share"></i></a></span>
+    <section>
+        <div class="cards">
+        <div class="card_part card_part-one" style="background-image: url('{% static 'image/demo.jpg' %}');">
+        {% comment %} <img src="{% static 'image/demo.jpg' %}" alt=""> {% endcomment %}
+        </div>
+        </div>
+    </section>
+    </div>
+    <!--BOOKS COLUMN ENDS-->
+    <!--CATEGORIES COLUMN BEGINING-->
+    <div class="columns categories">
+    <span class="title">Categories</span>
+    <section>
+        {% for item, count in categories.items %}
+        <a href="#">{{item}} <span>({{count}})</span></a>
+        {% endfor %}
+    </section>
+    </div>
+    <!--CATEGORIES COLUMN ENDS-->
+    <!--POSTS COLUMN BEGINING-->
+    <div class="columns posts">
+    <span class="title">Recent Posts <a href="#" title="Explore More"><i class="fa fa-share"></i></a></span>
+    <section>
+        {% for data in 5_recent %}
+        <a href="#">
+            <img src="{{data.picture.url}}" alt="" loading="lazy"> 
+            <p>{{data.title}}</p>
+        </a>
+        {% endfor %}
+    </section>
+    </div>
+    <!--POSTS COLUMN ENDS-->
+    <!--COMMENTS COLUMN BEGINING-->
+    <div class="columns comments">
+    <span class="title"> Recent Comments <a href="#" title="Explore More"><i class="fa fa-share"></i></a></span>
+    <section>
+        <marquee direction="up" scrollamount="4" onMouseOver="this.stop()" onMouseOut="this.start()" class="marquee2">
+        {% for comment in recent_comment %}
+        <p>{{comment.comment}} - {{comment.commenter_name}}</p>
+        {% endfor %}
+        </marquee>
+    </section>
+    </div>
+    <!--COMMENTS COLUMN ENDS-->
+    <!--SOCIAL MEDIA ICONS BEGINING-->
+    <div class="columns social_icons">
+    <a href="#" title="Facebook"><i class="fa fa-facebook"></i></a>
+    <a href="#" title="Instagram"><i class="fa fa-instagram"></i></a>
+    <a href="#" title="Youtube"><i class="fa fa-youtube"></i></a>
+    <a href="#" title="Whatsapp"><i class="fa fa-whatsapp"></i></a>
+    <a href="#" title="Telegram"><i class="fa fa-telegram"></i></a>
+    </div>
+    <!--SOCIAL MEDIA ICONS ENDS-->
+</div>
+</div>
+
+{% endblock content %}

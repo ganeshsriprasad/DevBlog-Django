@@ -1,0 +1,111 @@
+{% extends "home/base/base.html" %}
+{% block title %}Article{% endblock title %}
+{% block content %}
+<div class="blog_container">
+   
+   <div class="blog_content">
+      <h1 style="justify-content:center; color:navyblue;">{{content.title}}</h1>
+      {{content.descript|safe}}
+
+      <div class="columns">
+        <p class="title">Comments</p>
+        <div class="comment-section">
+
+
+            <h2>Recent Comments</h2>
+            <div class="comments-container">
+                {% for commenter in all_comment %}
+                <div class="comment"> <img class="comment-profile-pic" src="{{commenter.commenter_photo.url}}">
+                    <div class="comment-content">
+                        <p class="comment-author">{{commenter.commenter_name}}</p>
+                        <p class="comment-text">{{commenter.comment}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <h2>Leave a Comment</h2>
+            <form  method="post" enctype="multipart/form-data" novalidate> 
+                {% csrf_token %}
+                <div class="comment-form-row">
+                    {% if form.commenter_name.errors %}
+                    {% for error in form.commenter_name.errors %}
+                    <p style="color:red;display: flex;float: left;">{{error}}</p>
+                    {% endfor %}
+                    {% endif %}
+                <label for="">Name</label>
+                {{form.commenter_name}}
+                
+                <label for="">Image</label>
+                {{form.commenter_photo}}
+              </div>
+              
+              <div class="comment-form-row">
+                {% if form.comment.errors %}
+                    {% for error in form.comment.errors %}
+                    <p style="color:red;">{{error}}</p>
+                    {% endfor %}
+                    {% endif %}
+                <label for="">Comment</label>
+                {{form.comment}}
+              </div>
+              <button 
+              style="
+                background-color: #4CAF50; /* Green color for submit button */
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.2s ease-in-out;" 
+                type="submit">Submit Comment
+            </button>
+            </form>
+            
+            
+          </div>
+          
+
+      </div>
+
+    </div>
+
+   <div class="blog_content right_content">
+   
+      <!--CATEGORIES COLUMN BEGINING-->
+      <div class="columns categories">
+      <span class="title">Categories</span>
+      <section>
+          {% for item in categories %}
+          <a href="#">{{item}} </a>
+          {% endfor %}
+      </section>
+      </div>
+      <!--CATEGORIES COLUMN ENDS-->
+      <!--POSTS COLUMN BEGINING-->
+      <div class="columns posts">
+      <span class="title">Most Viewed Posts <a href="#" title="Explore More"><i class="fa fa-share"></i></a></span>
+      <section>
+          {% for data in posts %}
+          <a href="#">
+              <img src="{{data.picture.url}}" alt="" loading="lazy"> 
+              <p>{{data.title}}</p>
+          </a>
+          {% endfor %}
+      </section>
+      </div>
+      <!--POSTS COLUMN ENDS-->
+
+      <!--SOCIAL MEDIA ICONS BEGINING-->
+      <div class="columns social_icons">
+      <a href="#" title="Facebook"><i class="fa fa-facebook"></i></a>
+      <a href="#" title="Instagram"><i class="fa fa-instagram"></i></a>
+      <a href="#" title="Youtube"><i class="fa fa-youtube"></i></a>
+      <a href="#" title="Whatsapp"><i class="fa fa-whatsapp"></i></a>
+      <a href="#" title="Telegram"><i class="fa fa-telegram"></i></a>
+      </div>
+      <!--SOCIAL MEDIA ICONS ENDS-->
+   </div>
+</div>
+
+{% endblock content %}

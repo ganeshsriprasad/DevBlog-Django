@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Card</title>
+    <link rel="stylesheet" href="styles.css">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5faff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    
+    .course-card {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .card-header img {
+        width: 100%;
+        height: auto;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .info-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .info-tags span {
+        background: #f0f0f0;
+        border-radius: 5px;
+        padding: 0.3rem 0.5rem;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+    }
+    
+    .info-tags .batch {
+        background-color: #e7f3ff;
+        color: #007bff;
+    }
+    
+    .info-tags .seats, .info-tags .days-left {
+        background-color: #fef7e0;
+        color: #ffab00;
+    }
+    
+    h2 {
+        font-size: 1.1rem;
+        margin: 0;
+        line-height: 1.4;
+    }
+    
+    .card-footer {
+        padding: 1rem;
+        text-align: center;
+        background: #f9f9f9;
+    }
+    
+    .details-button {
+        background-color: #e0e0e0;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        color: #000;
+        font-size: 1rem;
+        cursor: pointer;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+    
+    .details-button i {
+        font-size: 1rem;
+    }
+    
+
+</style>
+
+</head>
+<body>
+    <div class="course-card">
+        <div class="card-header">
+            <img src="{% static "image/demo.jpg" %}" alt="Course Image">
+        </div>
+        <div class="card-body">
+            <div class="info-tags">
+                <span class="batch">Batch 7</span>
+                <span class="seats"><i class="fas fa-users"></i> 84 Seats Left</span>
+                <span class="days-left"><i class="fas fa-calendar-alt"></i> 39 Days Left</span>
+            </div>
+            <h2>Full Stack Web Development with JavaScript (MERN)</h2>
+        </div>
+        <div class="card-footer">
+            <button class="details-button">SEE DETAILS <i class="fas fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>

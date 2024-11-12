@@ -1,0 +1,52 @@
+
+{% load static %}
+{% block css %}
+
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Style2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/popup.css' %}">
+
+{% endblock css %}
+{% block favi %}      
+<link type="image/x-icon" sizes="256x256" rel="icon" href="{% static 'image/login.ico' %}">
+{% endblock favi %}
+
+{% block content %}
+
+<div class="container">
+  <div class="box">
+      <div class="header">
+          
+          <p>Log In to BlogVerse</p>
+      </div>
+      <form method="POST" novalidate>
+        {% csrf_token %}
+        <div class="input-box">
+          <label for="email">Username</label>
+          <input name="username" type="text" class="input-field" required>
+          <i class="bx bx-envelope"></i>
+        </div>
+        <div class="input-box">
+          <label for="pass">Password</label>
+          <input name="password" type="password" class="input-field" required>
+          <i class="bx bx-lock"></i>
+        </div>
+        <div class="input-box">
+          <input type="submit" class="input-submit" value="SIGN IN">
+        </div>
+      </form>
+        
+      <div class="forgot">
+          <span><a href="{% url "the_signup" %}">Sign Up</a></span>
+          <span>Forgot password?</span>
+      </div>
+  </div>
+  <div class="wrapper"></div>
+</div>
+
+
+{% endblock content %}
+
+

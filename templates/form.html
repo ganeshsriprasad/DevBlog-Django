@@ -1,0 +1,11 @@
+
+{% for row in form %}
+{% block label %}{% endblock label %}
+{{row.label}}
+{{ row }}
+{% if row.errors %}
+{% for error in row.errors %}
+<p style="color:red;">{{error}}</p>
+{% endfor %}
+{% endif %}
+{% endfor %}

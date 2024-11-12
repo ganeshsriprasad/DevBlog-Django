@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--TITLE-->
+    <title>BlogVerse | {% block title %}{% endblock title %}</title>
+    <!--SHORTCUT ICON-->
+    <link rel="shortcut icon" href="../images/favicon.icon">
+    <!--META TAGS-->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <!--FONTAWESOME-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Style2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/popup.css' %}">
+    {% block css %}{% endblock css %}
+  </head>
+  <body>
+    {% comment %} {% include "home/base/nav.html" %} {% endcomment %}
+    <!--HEADER-->
+    <!-- <header style="background: linear-gradient(rgba(1,1,1,.5), rgba(1,1,1,.5)), url(https://camo.githubusercontent.com/fada7a14206b5b513a56523974e99d485ae7be0d331cef14dbdd6b8c418ce235/68747470733a2f2f63646e622e61727473746174696f6e2e636f6d2f702f6173736574732f696d616765732f696d616765732f3031392f3832342f3435352f6f726967696e616c2f6a696e64726963682d7374656a736b616c2d61737472616c2d7363656e652d76312d66696e616c2e6769663f31353635313539373538);"> -->
+      <header style="background: #fff, url(https://camo.githubusercontent.com/fada7a14206b5b513a56523974e99d485ae7be0d331cef14dbdd6b8c418ce235/68747470733a2f2f63646e622e61727473746174696f6e2e636f6d2f702f6173736574732f696d616765732f696d616765732f3031392f3832342f3435352f6f726967696e616c2f6a696e64726963682d7374656a736b616c2d61737472616c2d7363656e652d76312d66696e616c2e6769663f31353635313539373538);">
+      <section>
+        <img src="{% static 'image/logo-light.svg' %}" alt="SimpleBlog logo" width="150" class="logo-light">
+        
+        <!-- <h1 class="title">BlogVerse - "Unleash Your Creativity"</h1> -->
+             <!--
+      - #HERO SECTION
+    -->
+
+  
+    <div class="hero" style="display: none;">
+
+      <div class="container">
+
+        <div class="left">
+
+          <h1 class="h1" style="color: black;">
+            Hi, I'm <b>Ganesh&nbsp;Sri Prasad K B</b>.
+            <br>Web Developer & Data Engineer
+          </h1>
+
+          <!-- <p class="h3">
+            Specialized in <abbr title="Accessibility">a11y</abbr>
+            and Core Web Vitals
+          </p> -->
+
+          <div class="btn-group">
+            <a href="{% url "contact" %}" class="btn btn-primary">Contact Me</a>
+            <a href="{% url "about" %}" class="btn btn-secondary">About Me</a>
+          </div>
+
+        </div>
+
+        <div class="right">
+
+          <div class="pattern-bg"></div>
+          <div class="img-box">
+            <!-- <img src="./assets/images/gani.jpg" alt="Ganesh Sri Prasad K B" class="hero-img"> -->
+            <img src="{% static 'image/gani.jpg' %}" alt="" class="hero-img">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+        <span>
+          <a href="{% url "homes" %}">Home</a> |
+          <a href="{% url "contact" %}">Contact Us</a> |
+          <a href="{% url "all_posts" %}">Posts</a>
+          {% if user.is_authenticated %}
+          <a href="{% url "logout" %}">| LogOut</a> 
+          <a href="{% url "dashboard" %}">| Dashboard</a> 
+          <a href="#">| Profile</a> 
+          {% else %}
+          <a href="{% url "the_signup" %}">| SignUp</a> 
+          <!-- <a href="{% url "the_login" %}">| Login</a>  -->
+          <!-- <a href="{% url 'the_login' %}" id="login-link">| Login</a> -->
+
+          {% endif %}
+        </span>
+      </section>
+    </header>
+
+
+    {% if messages %}
+    {% for message in messages %}  
+    <div id="popup-message" class="popup hidden">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+      <div class="popup-content">
+        {% comment %} <i class="icon">&#10004;</i> {% endcomment %}
+        <div class="text-content">
+          <strong>Note!</strong>
+          <p>Message</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    
+
+    <!--BLOG SECTION-->
+    {% block content %}{% endblock content %}
+    <!--REMOVE THIS-->
+    
+
+    <script type="module" src="https://cdn.skypack.dev/ionicons@5.2.3/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.skypack.dev/ionicons@5.2.3/dist/ionicons/ionicons.js"></script>
+
+    {% include "auth/popup.html" %}
+    {% block js %}{% endblock js %}
+
+
+    {% comment %}     
+    <script>
+        const list = document.querySelectorAll('.list');
+    
+        function activeLink() {
+            list.forEach((item) => item.classList.remove('active'));
+            this.classList.add('active');
+        }
+    
+        list.forEach((item) => item.addEventListener('click', activeLink));
+
+
+        document.getElementById('login-link').addEventListener('click', function(event) {
+        event.preventDefault();  // Prevents the default link behavior (navigation)
+
+        var heroContainer = document.getElementById('hide');  // Select the hero section by id
+        if (heroContainer) {
+            heroContainer.style.display = 'none';  // Hide the hero section
+        } else {
+            console.error('Hero section not found!');
+        }
+    });
+    </script>
+    
+     {% endcomment %}
+
+  </body>
+</html>

@@ -1,0 +1,77 @@
+{% extends "admin/base/base.html" %}
+{% load static %}
+{% block title %}Main{% endblock title %}
+{% block css %}
+
+{% endblock css %}
+
+{% block content %}
+
+<div class="analyse">
+    <div class="sales">
+        <div class="status">
+            <div class="info">
+                <h3>Total Posts</h3>
+                <h1>{{posts}}</h1>
+            </div>
+            <div class="progresss">
+                                          
+                <img src="{% static "image/posts1.svg" %}" alt="">
+                
+            </div>
+        </div>
+    </div>
+    <div class="visits">
+        <div class="status">
+            <div class="info">
+                <h3>Total Views</h3>
+                <h1>{{views}}</h1>
+            </div>
+            <div class="progresss">
+                <img src="{% static "image/views.svg" %}" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="searches">
+        <div class="status">
+            <div class="info">
+                <h3>Total Likes</h3>
+                <h1>{{likes}}</h1>
+            </div>
+            <div class="progresss">
+                <img src="{% static "image/likes.svg" %}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="recent-orders">
+    <h2>Most Viewed Posts</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Post Title</th>
+                <th>Category</th>
+                <th>Views</th>
+                <th>Likes</th>
+                <th></th>
+            </tr>
+
+        </thead>
+        <tbody>
+            {% for row in most_viewed %}
+            <tr>
+                <td>{{row.title|truncatechars:":100"}}</td>
+                <td>{{row.category}}</td>
+                <td>{{row.views}}</td>
+                <td>{{row.likes}}</td>
+                <td>{{row.likes}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</div>
+
+
+{% endblock content %}

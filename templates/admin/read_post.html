@@ -1,0 +1,59 @@
+{% extends "admin/base/base.html" %}
+{% load static %}
+{% block title %}Read Post{% endblock title %}
+{% block css %}
+<link rel="stylesheet" href="{% static "css/form.css" %}">
+{% endblock css %}
+
+{% block content %}
+<main>
+
+    <div class="recent">
+        <h2>Your posts</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Thumbnail</th>
+                    <th>Post Title</th>
+                    <th>Category</th>
+                    <th>Views</th>
+                    <th>Likes</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+    
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    <td ><img style="height: 50px; width: 50px;" src="{{row.picture.url}}" alt=""></td>
+                    <td>{{row.title|truncatechars:":45"}}</td>
+                    <td>{{row.category}}</td>
+                    <td>{{row.views}}</td>
+                    <td>{{row.likes}}</td>
+                    <td>
+                        <a href="{% url "update_post" row.pk %}">                            
+                            <div class="icon">
+                                <span class="material-icons-sharp">
+                                    edit
+                                </span>
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url "delete_post" row.pk %}">                            
+                            <div class="icon">
+                                <span class="material-icons-sharp">
+                                    delete
+                                </span>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    </div>
+</main>
+{% endblock content %}

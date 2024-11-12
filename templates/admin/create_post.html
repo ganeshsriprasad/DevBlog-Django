@@ -1,0 +1,18 @@
+{% extends "admin/base/base.html" %}
+{% load static %}
+{% block title %}Create Post{% endblock title %}
+{% block css %}
+<link rel="stylesheet" href="{% static "css/form.css" %}">
+{% endblock css %}
+
+{% block content %}
+<main>
+    <h1>Create your post</h1>
+    <form action="" method="POST"  enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        {{form.media}}
+        {% include "form.html" %}
+        <button type="submit" class="btn"> Save </button>
+    </form>
+</main>
+{% endblock content %}
