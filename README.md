@@ -2,6 +2,9 @@
 
 Welcome to the **DevBlog** project! This is a fully functional blog website built using **Django** that allows users to post, view, and manage blog entries. Whether you're a writer or a developer, **DevBlog** is designed to serve as a powerful and easy-to-use platform to share content and interact with readers.
 
+![DevBlog UI](media/DevBlog%20UI.png)
+
+
 ## Features
 
 - **User Authentication**: Register, log in, and manage your profile.
