@@ -1,5 +1,10 @@
 # DevBlog-Django - A Professional Django Blog Website
 
+
+![GitHub stars](https://img.shields.io/github/stars/ganeshsriprasad/DevBlog-Django) 
+![GitHub forks](https://img.shields.io/github/forks/ganeshsriprasad/DevBlog-Django)
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+
 Welcome to the **DevBlog** project! This is a fully functional blog website built using **Django** that allows users to post, view, and manage blog entries. Whether you're a writer or a developer, **DevBlog** is designed to serve as a powerful and easy-to-use platform to share content and interact with readers.
 
 ![DevBlog UI](media/DevBlog%20UI.png)
