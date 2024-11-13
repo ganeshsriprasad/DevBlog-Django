@@ -11,9 +11,9 @@ TEMPLATE_DIR = os.path.join(BASE_DIR , 'templates')
 SECRET_KEY = 'django-insecure-=k!nu)_o7(!a4444lf)_fe=8x+16ny8yzx&6k^0t24#13lvf)5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.vercel.app']
 
 LOGUN_URL = "/login/"
 
