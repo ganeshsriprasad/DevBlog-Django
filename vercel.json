@@ -1,12 +1,9 @@
 {
   "builds": [
     {
-      "src": "blogverse/wsgi.py",
+      "src": "manage.py",
       "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "15mb",
-        "runtime": "python3.10"
-      }
+      "config": { "maxLambdaSize": "15mb", "runtime": "python3.10" }
     }
   ],
   "routes": [
@@ -16,7 +13,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "blogverse/wsgi.py"
+      "dest": "manage.py"
     }
   ]
 }
